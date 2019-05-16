@@ -1,0 +1,41 @@
+if [[ $EUID -ne 0 ]]; then
+	echo "This script must be run as root."
+	exit 1
+fi
+
+while [[ $# -gt 0 ]]
+do
+option=$1
+shift
+case $option in
+	-a|--add)
+		temp_file=$(mktemp)
+		while [[ $# -gt 0 && $1 != -* ]]
+		do
+			tac /etc/sudoers | sed -E "0,/^[a-z0-9]* (ALL=\(ALL\) ALL)/s//$1 \1\n&/" | tac > $temp_file && \
+				mv $temp_file /etc/sudoers
+			shift
+		done
+	;;
+	-d|--delete)
+		while [[ $# -gt 0 && $1 != -* ]]
+		do
+			sed -i "/$1 ALL=(ALL) ALL/d" /etc/sudoers
+			shift
+		done
+	;;
+	*)
+		cat <<- EOF
+			usage: sudo ./sudoers.sh [-h] [-a USERS]
+
+			optional arguments:
+			  -h, --help	show this help message and exit
+			  -a USERS, --add USERS
+			  		add user(s) to sudoers file
+			  -d USERS, --delete USERS
+			  		delete user(s) from sudoers file
+			EOF
+		while [[ $# -gt 0 && $1 != -* ]]; do shift; done
+	;;
+esac
+done
