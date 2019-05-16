@@ -14,7 +14,7 @@
 
 ```
 git clone "https://github.com/DeBos99/sudoers.git"
-sudo mv sudoers /usr/bin
+sudo mv sudoers /usr/sbin
 ```
 
 ## Usage
