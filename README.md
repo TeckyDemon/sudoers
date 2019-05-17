@@ -14,22 +14,22 @@
 
 ```
 git clone "https://github.com/DeBos99/sudoers.git"
-sudo mv sudoers /usr/sbin
+sudo mv sudoers /usr/bin
 ```
 
 ## Usage
 
 Show help:
 
-`sudo sudoers --help`
+`sudoers --help`
 
 Add **USER1** and **USER2** to **/etc/sudoers** file:
 
-`sudo sudoers --add USER1 USER2`
+`sudoers --add USER1 USER2`
 
 Delete **USER1** and **USER2** from **/etc/sudoers** file:
 
-`sudo sudoers --delete USER1 USER2`
+`sudoers --delete USER1 USER2`
 
 ## Authors
 
