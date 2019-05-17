@@ -20,9 +20,21 @@ case $option in
 			shift
 		done
 	;;
+	-t|--timestamp)
+		if grep -Pq '^Defaults(.*)timestamp_timeout=\d+(.*)' /etc/sudoers; then
+			sed -Ei "s/^(Defaults.*timestamp_timeout=)[0-9]+(.*)/\1$1\2/g" /etc/sudoers
+		else
+			if grep -Pq '^Defaults.*$' /etc/sudoers; then
+				sed -Ei "0,/^(Defaults.*\$)/s//\1,timestamp_timeout=$1/" /etc/sudoers
+			else
+				echo "Defaults timestamp_timeout=$1" >> /etc/sudoers
+			fi
+		fi
+		shift
+	;;
 	*)
 		cat <<- EOF
-			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS]
+			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS] [-t TIMESTAMP]
 
 			optional arguments:
 			    -h, --help	show this help message and exit
@@ -30,6 +42,8 @@ case $option in
 			            	add user(s) to sudoers file
 			    -d USERS, --delete USERS
 			            	delete user(s) from sudoers file
+			    -t TIMESTAMP --timestamp_timeout TIMESTAMP
+			            	set timestamp_timeout option in sudoers file
 			EOF
 		while [[ $# -gt 0 && $1 != -* ]]; do shift; done
 	;;
