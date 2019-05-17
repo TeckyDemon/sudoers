@@ -22,7 +22,7 @@ case $option in
 	;;
 	*)
 		cat <<- EOF
-			usage: sudo ./sudoers.sh [-h] [-a USERS]
+			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS]
 
 			optional arguments:
 			  -h, --help	show this help message and exit
