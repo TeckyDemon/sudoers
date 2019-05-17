@@ -31,6 +31,10 @@ Delete **USER1** and **USER2** from **/etc/sudoers** file:
 
 `sudoers --delete USER1 USER2`
 
+Set timestamp_timeout option to **TIMESTAMP**:
+
+`sudoers --timestamp_timeout TIMESTAMP`
+
 ## Authors
 
 * **Michał Wróblewski** - Main Developer - [DeBos99](https://github.com/DeBos99)
