@@ -25,11 +25,11 @@ case $option in
 			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS]
 
 			optional arguments:
-			  -h, --help	show this help message and exit
-			  -a USERS, --add USERS
-			  		add user(s) to sudoers file
-			  -d USERS, --delete USERS
-			  		delete user(s) from sudoers file
+			    -h, --help	show this help message and exit
+			    -a USERS, --add USERS
+			            	add user(s) to sudoers file
+			    -d USERS, --delete USERS
+			            	delete user(s) from sudoers file
 			EOF
 		while [[ $# -gt 0 && $1 != -* ]]; do shift; done
 	;;
