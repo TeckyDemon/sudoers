@@ -8,6 +8,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Authors](#authors)
+- [Contact](#contact)
 - [License](#license)
 
 ## Installation
@@ -38,6 +39,10 @@ Set **KEY** option to **VALUE**:
 ## Authors
 
 * **Michał Wróblewski** - Main Developer - [DeBos99](https://github.com/DeBos99)
+
+## Contact
+
+Discord: DeBos#3292
 
 ## License
 
