@@ -1,5 +1,7 @@
 # Sudoers
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Sudoers** is bash script that helps editing **/etc/sudoers** file.
 
 ## Content
