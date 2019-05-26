@@ -21,8 +21,8 @@ case $option in
 		done
 	;;
 	-sd|--set-default)
-		if grep -Pq "^Defaults(.*)$1=\d+(.*)" /etc/sudoers; then
-			sed -Ei "s/^(Defaults.*$1=)[0-9]+(.*)/\1$2\2/g" /etc/sudoers
+		if grep -Pq "^Defaults(.*)$1=[^,]*(.*)" /etc/sudoers; then
+			sed -Ei "s/^(Defaults.*$1=)[^,]*(.*)/\1$2\2/g" /etc/sudoers
 		else
 			if grep -Pq '^Defaults.*$' /etc/sudoers; then
 				sed -Ei "0,/^(Defaults.*\$)/s//\1,$1=$2/" /etc/sudoers
@@ -33,9 +33,13 @@ case $option in
 		shift
 		shift
 	;;
+	-ud|--unset-default)
+		sed -Ei "s/^(Defaults.*)$1=[^,]*,?(.*)\$/\1\2/g;/^Defaults.\$/d" /etc/sudoers
+		shift
+	;;
 	*)
 		cat <<- EOF
-			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS] [-sd KEY VALUE]
+			usage: sudo ./sudoers.sh [-h] [-a USERS] [-d USERS] [-sd KEY VALUE] [-ud KEY]
 
 			optional arguments:
 			    -h, --help	show this help message and exit
@@ -45,6 +49,8 @@ case $option in
 			            	delete user(s) from sudoers file
 			    -sd KEY VALUE, --set-default KEY VALUE
 			            	set KEY option in sudoers file to VALUE
+			    -ud KEY, --unset-default KEY
+			            	unset KEY option in sudoers file
 			EOF
 		while [[ $# -gt 0 && $1 != -* ]]; do shift; done
 	;;

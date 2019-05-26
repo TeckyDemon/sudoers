@@ -55,6 +55,10 @@ Set **KEY** option to **VALUE**:
 
 `sudoers --set-default KEY VALUE`
 
+Unset **KEY** option:
+
+`sudoers --unset-default KEY`
+
 ## Authors
 
 * **Michał Wróblewski** - Main Developer - [DeBos99](https://github.com/DeBos99)
